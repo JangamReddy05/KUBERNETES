@@ -1,0 +1,13 @@
+#kind: # https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "nginx-pod"
+  namespace: default
+  labels:
+    app: "nginx-pod"
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx
+    

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: second-pod
+spec:
+    containers:
+       name: main
+       image: httpd
+       ports:
+         containers ports: 80
