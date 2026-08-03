@@ -4,7 +4,7 @@ metadata:
     name: second-pod
 spec:
     containers:
-       name: main
-       image: httpd
-       ports:
-         containers ports: 80
+    - name: second-pod
+      image: httpd
+      ports:
+      -  containerPort: 80

@@ -1,5 +1,5 @@
 apiVersion: cert-manager.io/v1
-kind: IngressClusterIssuer
+kind: ClusterIssuer
 metadata:
   name: letsencrpt-staging
   namespace: cert-manager
