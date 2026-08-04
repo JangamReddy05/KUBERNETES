@@ -5,12 +5,12 @@ metadata:
   name: pod-log-reader-binding
   namespace: dev-team
 subjects:
-- kind: User
-  name: ********** 
-  apiGroup: rbac.authorization.k8s.io
-- kind: group
-  name: ***********
-  apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: your-user-name
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: your-group-name
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: pod-log-reader
