@@ -1,0 +1,14 @@
+# create a file store in any cloud for this scenario. In this example, we are using a NFS server running in a pod in the cluster. The NFS server is running on the node with IP
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: file-store-volume
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.1.0.206
+    path: /manualfilevol0

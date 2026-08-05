@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  nginx-pd
+  labels:
+    app:  nginx-pd
+spec:
+  selector:
+    matchLabels:
+      app: nginx-pd
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app:  nginx-pd
+    spec:
+      containers:
+      - name:  nginx-pd
+        image:  nginx
+        ports:
+        - containerPort:  80
+        volumeMounts:
+        - name:  manual-disk-volume
+          mountPath:  /manual-disk-volume-data
+      volumes:
+      - name:  manual-disk-volume
+        persistentVolumeClaim:
+          claimName:  manual-disk-pvc
+        

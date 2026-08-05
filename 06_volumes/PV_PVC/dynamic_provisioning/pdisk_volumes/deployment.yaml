@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  dyn-deployment
+  labels:
+    app:  dyn-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dyn-deployment
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app:  dyn-deployment
+    spec:
+      containers:
+      - name:  dyn-deployment
+        image:  nginx:latest
+        ports:
+        - containerPort:  80
+        volumeMounts:
+        - name: dyn-volume
+          mountPath: /dynpddata
+      volumes:
+        - name: dyn-volume
+          persistentVolumeClaim:
+            claimName: dynamic-disk-pvc

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fileshare-deployment
+spec:
+  selector:
+    matchLabels:
+      app: fileshare-deployment
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app:  fileshare-deployment
+    spec:
+      containers:
+      - name: fileshare-container
+        image: httpd:latest
+        ports:
+        - containerPort:  80
+        volumeMounts:
+        - name: fs-volume
+          mountPath: /dynfsdata
+      volumes:
+        - name: fs-volume
+          persistentVolumeClaim:
+            claimName: fileshare-pvc
