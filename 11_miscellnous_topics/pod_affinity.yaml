@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-app-affinity
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: httpd-app
+  template:
+    metadata:
+      labels:
+        app: httpd-app
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - httpd-app
+            topologyKey: kubernetes.io/hostname
+
+      containers:
+      - name: httpd-app
+        image: httpd
+        ports:
+        - containerPort: 80
+            
